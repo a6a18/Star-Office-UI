@@ -807,11 +807,44 @@ def set_state_endpoint():
 
 
 if __name__ == "__main__":
+    import argparse
+    import socket
+    
+    def get_available_port(default_port):
+        """Find an available port, starting with default_port."""
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                s.bind(('0.0.0.0', default_port))
+                return default_port
+            except OSError:
+                # Default port is in use, let the OS assign a random available port
+                s.bind(('0.0.0.0', 0))
+                return s.getsockname()[1]
+
+    parser = argparse.ArgumentParser(description="Star Office UI - Backend")
+    parser.add_argument("--port", type=int, help="Port to run the server on", default=None)
+    args = parser.parse_args()
+    
+    # Determine port: 1. Args, 2. Env, 3. Default (18791)
+    target_port = args.port
+    if target_port is None:
+        env_port = os.environ.get("OFFICE_PORT") or os.environ.get("PORT")
+        if env_port and env_port.isdigit():
+            target_port = int(env_port)
+        else:
+            target_port = 18791
+            
+    # Try to get the requested port or fallback to a random one if occupied
+    final_port = get_available_port(target_port)
+    
+    if final_port != target_port:
+        print(f"[*] Warning: Port {target_port} is occupied. Auto-assigned available port: {final_port}")
+        
     print("=" * 50)
     print("Star Office UI - Backend State Service")
     print("=" * 50)
     print(f"State file: {STATE_FILE}")
-    print("Listening on: http://0.0.0.0:18791")
+    print(f"Listening on: http://0.0.0.0:{final_port}")
     print("=" * 50)
     
-    app.run(host="0.0.0.0", port=18791, debug=False)
+    app.run(host="0.0.0.0", port=final_port, debug=False)

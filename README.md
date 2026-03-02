@@ -31,7 +31,7 @@ cd backend
 python3 app.py
 ```
 
-打开：**http://127.0.0.1:18791**
+打开：**http://127.0.0.1:18791** (如果端口被占用，会自动分配新端口，请留意终端输出)
 
 切状态试试（在项目根目录执行）：
 ```bash
@@ -105,7 +105,7 @@ cd backend
 python3 app.py
 ```
 
-打开：`http://127.0.0.1:18791`
+打开：`http://127.0.0.1:18791` (或终端显示的实际地址)
 
 ### 4) 切换主 Agent 状态（示例）
 
@@ -254,7 +254,7 @@ cd backend
 python3 app.py
 ```
 
-Open: **http://127.0.0.1:18791**
+Open: **http://127.0.0.1:18791** (If the port is occupied, a random open port will be assigned. Check the terminal output)
 
 Try changing states (run from project root):
 ```bash
@@ -328,7 +328,7 @@ cd backend
 python3 app.py
 ```
 
-Open: `http://127.0.0.1:18791`
+Open: `http://127.0.0.1:18791` (Or the actual URL shown in the terminal)
 
 ### 4) Switch main Agent status (example)
 

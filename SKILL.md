@@ -39,7 +39,7 @@ python3 app.py
 ```
 
 然后告诉主人：
-> 好了，你现在打开 http://127.0.0.1:18791 就能看到像素办公室了！
+> 好了，你现在打开终端输出的地址（默认 http://127.0.0.1:18791） 就能看到像素办公室了！
 
 ---
 
@@ -70,7 +70,7 @@ python3 set_state.py idle "待命中，随时准备为你服务"
 如果你这台机器有 `cloudflared`，直接跑：
 
 ```bash
-cloudflared tunnel --url http://127.0.0.1:18791
+cloudflared tunnel --url http://127.0.0.1:18791 (如果你使用了其他端口，请替换为你实际的端口)
 ```
 
 会得到一个 `https://xxx.trycloudflare.com` 链接，发给主人即可。

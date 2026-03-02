@@ -1,8 +1,8 @@
 #!/bin/bash
 # Star Office UI Health Check
 # Checks if backend is responding, restarts if not
-
-BACKEND_URL="http://127.0.0.1:18791/health"
+PORT=${OFFICE_PORT:-18791}
+BACKEND_URL="http://127.0.0.1:${PORT}/health"
 LOG_FILE="/root/.openclaw/workspace/star-office-ui/healthcheck.log"
 
 # Log timestamp
